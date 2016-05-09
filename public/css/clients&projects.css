@@ -1,0 +1,10 @@
+.addElement {
+    width: 240px;
+    position: fixed;
+    left: 135px;
+    top: 262px;
+}
+
+.addElement button:focus {
+    background: #5ebb69;
+}

@@ -1,0 +1,1 @@
+var recruitApp = angular.module('recruitApp', ['ngRoute']);

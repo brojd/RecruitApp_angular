@@ -1,0 +1,89 @@
+@media screen and (max-width: 1060px) {
+    
+  header .back_icon {
+    left: 20px;
+  }
+  
+  header #searchAnchor {
+    right: 30px;
+  }
+  
+}
+
+@media screen and (max-width: 860px) {
+  
+  .addElement {
+    position: static;
+    display: block;
+    margin: 30px auto;
+    width: 290px;
+  }
+  
+  header .back_icon {
+    max-width: 8%;
+    min-width: 40px;
+    height: auto;
+    left: 10px;
+  }
+  
+  header > a {
+    max-width: 30%;
+    min-width: 180px;
+  }
+  
+  header #searchAnchor {
+    right: 60px;
+    width: 13%;
+    min-width: 20px;
+    top: 50px;
+  }
+  
+  header #searchButton {
+    font-size: 12px;
+    width: 100%;
+  }
+  
+  .wrapSections {
+    max-width: 100%;
+  }
+  
+  main section {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  main .jobDescription {
+    width: 90%;
+  }
+  
+  main section textarea, main .jobDescription, main .candidates {
+    min-width: 200px;
+  }
+  
+  main .candidates {
+    width: 90%;
+  }
+  
+  main .candidates h2 {
+    padding-bottom: 15px;
+  }
+    
+}
+
+
+@media screen and (max-width: 540px) {
+  
+    header #searchAnchor {
+      display: block;
+      min-width: 150px;
+      position: static;
+      margin: 0 auto;
+    }
+    
+    header #searchButton {
+      height: 20px;
+      margin-bottom: 10px;
+    }
+    
+}

@@ -1,0 +1,178 @@
+html, body, img, button, h1, h2, h3, p, ol, ul, li, a, footer {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+body, html {
+    font-family: Tahoma, Geneva, sans-serif;
+    height: 100%;
+}
+
+html * {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+#container {
+    position: relative;
+    min-height: 100%;
+}
+
+/* HEADER */
+
+header {
+    background: #ffffff;
+    position: relative;
+    border-bottom: 1px solid #d7d7d7;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.topLine {
+    background: #6e6a6a;
+    height: 20px;
+}
+
+header #logoAnchor {
+    width: 240px;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header #logo {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+header #searchAnchor {
+  position: absolute;
+  right: 130px;
+  top: 53px;
+}
+
+header #searchButton {
+  height: 35px;
+  padding: 0 10px;
+  background: #44b251;
+  color: #FFFFFF;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+header .back_icon {
+    position: absolute;
+    width: 60px;
+    height: auto;
+    left: 130px;
+    top: 40px;
+}
+
+/* MAIN */
+
+main {
+    background: white;
+    padding-bottom: 20px;
+}
+
+main h2 {
+    margin: 0 auto;
+    padding: 50px 0;
+    height: 40px;
+    display: block;
+    width: 300px;
+    color: #353c41;
+    font-style: italic;
+    text-shadow: -2px -1px #c1c1c1;
+    text-align: center;
+}
+
+ul {
+    width: 290px;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+main ul li {
+    height: 35px;
+    margin-bottom: 30px;
+}
+
+main ul li a {
+    height: 100%;
+    width: 240px;
+    border-radius: 5px;
+    display: inline-block;
+    background: #006eb6;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    font-size: 18px;
+}
+
+main ul li button, main ul li button img {
+    height: 100%;
+    background: #ffffff;
+    float: right;
+}
+
+.addElement {
+    border: 1px solid #b9b9b9;
+    background: #f2f2f2;
+    border-radius: 5px;
+    position: relative;
+}
+
+.addElement h3 {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+    color: #353c41;
+}
+
+.addElement form {
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+    color: #353c41;
+}
+
+.addElement span {
+    width: 80px;
+    display: inline-block;
+}
+
+.addElement button, #saveJobDescription, #saveCandidateInfo, #searchCandidates {
+    width: 80px;
+    height: 30px;
+    margin: 10px auto 10px auto;
+    display: block;
+    background: #006eb6;
+    color: #ffffff;
+    border-radius: 3px;
+    transition: background 1s;
+}
+
+.clearDiv {
+    clear: both;
+}
+
+/* FOOTER */
+
+footer {
+    background: #6e6a6a;
+    color: #ffffff;
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    width:100%;
+	height:20px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+

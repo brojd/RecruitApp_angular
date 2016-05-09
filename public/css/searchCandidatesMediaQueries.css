@@ -1,0 +1,55 @@
+@media screen and (max-width: 1060px) {
+    
+  header .back_icon {
+    left: 20px;
+  }
+  
+}
+
+
+@media screen and (max-width: 880px) {
+    
+  main #results {
+    width: 300px;
+  }
+  
+  main #sectionsWrapper {
+    width: 640px
+  }
+  
+  header .back_icon {
+    max-width: 8%;
+    min-width: 40px;
+    height: auto;
+    left: 10px;
+  }
+  
+  header > a {
+    max-width: 30%;
+    min-width: 180px;
+  }
+  
+}
+
+@media screen and (max-width: 660px) {
+    
+  main #sectionsWrapper {
+    max-width: 100%;
+  }
+  
+  main section {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  main #results {
+    margin-top: 40px;
+    width: 300px;
+  }
+  
+  main #searchForm {
+    max-width: 80%;
+  }
+  
+}

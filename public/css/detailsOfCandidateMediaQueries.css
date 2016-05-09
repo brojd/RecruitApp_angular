@@ -1,0 +1,102 @@
+@media screen and (max-width: 1060px) {
+  
+  header .back_icon {
+    left: 20px;
+  }
+  
+  header #searchAnchor {
+    right: 30px;
+  }
+  
+}
+
+@media screen and (max-width: 860px) {
+  
+  header .back_icon {
+    max-width: 8%;
+    min-width: 40px;
+    height: auto;
+    left: 10px;
+  }
+  
+  header > a {
+    max-width: 30%;
+    min-width: 180px;
+  }
+  
+  main {
+    max-width: 100%;
+  }
+  
+  main section {
+    max-width: 90%;
+  }
+  
+  main section > div {
+    display: block;
+    width: 100%;
+  }
+  
+  main section > h3 {
+    margin: 15px;
+  }
+  
+  main > section form input {
+    max-width: 70%;
+    margin: 5px 10px 5px 10px;  
+  }
+  
+  main > section form span {
+    max-width: 20%;
+    margin-left: 10px;
+    min-width: 125px;
+  }
+  
+  main section form textarea {
+    max-width: 90%;
+    margin: 0 auto 10px auto;
+  }
+  
+  header #searchAnchor {
+    right: 60px;
+    width: 13%;
+    min-width: 20px;
+    top: 50px;
+  }
+  
+  header #searchButton {
+    font-size: 12px;
+    width: 100%;
+  }
+    
+}
+
+@media screen and (max-width: 620px) {
+  
+  main > section form div span {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  main > section form div input {
+    display: block;
+    max-width: 90%;
+    margin: 5px auto;
+  }
+  
+  header #searchAnchor {
+      display: block;
+      min-width: 150px;
+      position: static;
+      margin: 0 auto;
+    }
+    
+    header #searchButton {
+      height: 20px;
+      margin-bottom: 10px;
+    }
+  
+}
+

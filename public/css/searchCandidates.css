@@ -1,0 +1,49 @@
+main #sectionsWrapper {
+    width: 830px;
+    margin: 40px auto 0 auto;
+    display: block;
+}
+
+main section {
+    float: left;
+    margin: 0 5px;
+}
+
+main #searchForm form * {
+    display: block;
+}
+
+main #searchForm {
+    width: 300px;
+    border:  2px solid #78838b;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 2px #BABABA;
+    background: #ebeeef;
+    font-size: 15px;
+}
+
+main #searchForm input[type=text], main #searchForm textarea {
+    margin: 0 auto;
+    width: 80%;
+}
+
+main #searchForm span {
+    margin: 10px 0 0 28px;
+}
+
+main #searchForm input[type=submit] {
+    margin: 15px auto;
+}
+
+main #results {
+    width: 500px;
+}
+
+main .listOfCandidates {
+    float: right;
+}
+
+
+main #clearDiv {
+    clear: both;
+}
