@@ -54,6 +54,51 @@ app['delete']('/clients/:client_id', function(req, res) {
 });
 
 
+// Projects
+
+app.get('/client', function(req, res) {
+    manageDB.getProjects(function(err, projects) {
+        if (err) {
+            throw Error(err);
+        } else {
+            manageDB.getClients(function(err, clients) {
+                if (err) {
+                    throw Error(err);
+                } else {
+                    var data = {'clients': clients,
+                                'projects': projects};
+                    console.log(data);
+                    res.json(data);
+                }
+            })
+            
+        }
+    });
+});
+
+app.post('/client', function(req, res) {
+    var projectName = req.body.formData['projectName'];
+    var clientID = req.body.clientID;
+    manageDB.saveProject(projectName, clientID, function(err, projects) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(projects);
+        }
+    });
+});
+
+app['delete']('/client/:project_id', function(req, res) {
+    manageDB.removeProject(req.params.project_id, function(err, projects) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(projects);
+        }
+    });
+});
+
+
 // FRONTEND ROUTE
 
 

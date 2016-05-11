@@ -7,21 +7,24 @@
         </a>
     </header>
     <main>
-        <section class="clients">
-            <h2>Clients</h2>
-            <ul class="listOfClients" ng-repeat="client in clients">
+        <section class="projects">
+            <h2>
+                Client: {{clientName}}<br>
+                Projects
+            </h2>
+            <ul class="listOfProjects" ng-repeat="project in projects">
                 <li>
-                    <a href="#/client/{{client._id}}">{{client.name}}</a>
-                    <button class="removeButton" ng-click="deleteClient(client._id)">
+                    <a href="#">{{project.name}}</a>
+                    <button class="removeButton" ng-click="deleteProject(project._id)">
                         <img src="img/trash.png">
                     </button>
                 </li>
             </ul>
             <aside class="addElement">
-                <h3>Add new client</h3>
+                <h3>Add new project</h3>
                 <form method="post">
-                    Name: <input type="text" class="nameOfClient" ng-model="formData.clientName">
-                    <button type="submit" class="addClient" ng-click="createClient()">
+                    Name: <input type="text" class="nameOfProject" ng-model="formData.projectName">
+                    <button type="submit" class="addProject" ng-click="createProject()">
                         Add
                     </button>
                 </form>

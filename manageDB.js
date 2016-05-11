@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 /* CLIENT */
 
 
-// return all clients' names
+// return all clients
 module.exports.getClients = function(callback) {
     db.clients.find({}, function(err, clients) {
                             if (err) {
@@ -33,15 +33,20 @@ module.exports.saveClient = function(name, callback) {
             db.clients.insert({
                 '_id': docs[0].clientID,
                 'name': name
+            }, function(err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    db.others.update({}, { $inc: { clientID: 1 }});
+                    db.clients.find({}, function(err, clients) {
+                                    if (err) {
+                                        return callback(err);
+                                    } else {
+                                        return callback(null, clients);
+                                    }
+                                });
+                }
             });
-            db.others.update({}, { $inc: { clientID: 1 }});
-            db.clients.find({}, function(err, clients) {
-                            if (err) {
-                                return callback(err);
-                            } else {
-                                return callback(null, clients);
-                            }
-                        });
         }
     });
 };
@@ -61,8 +66,68 @@ module.exports.removeClient = function(idOfClient, callback) {
                                 }
             );
         }
-    })
-}
+    });
+};
 
 
 /* PROJECTS */
+
+
+// return all projects
+module.exports.getProjects = function(callback) {
+    db.projects.find({}, function(err, projects) {
+                            if (err) {
+                                return callback(err);
+                            } else {
+                                return callback(null, projects);
+                            }
+                        }
+    );
+};
+
+// save project in database
+module.exports.saveProject = function(projectName, clientID, callback) {
+    db.others.find({}, function(err, docs) {
+        if (err) {
+            callback(err);
+        } else {
+            db.projects.insert({
+                '_id': docs[0].projectID,
+                'name': projectName,
+                'clientID': clientID,
+                'job_description': ''
+            }, function(err) {
+                if (err) {
+                    callback(err);
+                } else {
+                    db.others.update({}, { $inc: { projectID: 1 }});
+                    db.projects.find({}, function(err, projects) {
+                                    if (err) {
+                                        return callback(err);
+                                    } else {
+                                        return callback(null, projects);
+                                    }
+                                });
+                }
+            });
+        }
+    });
+};
+
+// remove project from database
+module.exports.removeProject = function(idOfProject, callback) {
+    db.projects.remove({ _id: Number(idOfProject) }, function(err) {
+        if (err) {
+            callback(err);
+        } else {
+            db.projects.find({}, function(err, projects) {
+                                    if (err) {
+                                        return callback(err);
+                                    } else {
+                                        return callback(null, projects);
+                                    }
+                                }
+            );
+        }
+    });
+};
