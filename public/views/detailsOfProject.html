@@ -1,0 +1,49 @@
+<div id="container">
+    <header>
+        <div class="topLine"></div>
+        <a href="#"><img src="../img/back_icon.png" class="back_icon"></a>
+        <a href="/#/" id="logoAnchor"><img src="img/logo.png" id="logo"></a>
+        <a href="/searchCandidates" id="searchAnchor">
+            <button id="searchButton">Search Candidates</button>
+        </a>
+    </header>
+    <main>
+        <div class="wrapSections">
+            <section class="jobDescription">
+                <h2>Job Description<br>
+                <span class="nameOfClient">Client: {{clientName}}</span><br>
+                <span class="nameOfProject">Project: {{projectName}}</span></h2>
+                <textarea class="jobDescText" ng-model="jobDescText">{{jobDescText}}</textarea>
+                <button type="button" id="saveJobDescription" ng-click="saveJobDesc()">
+                    Save
+                </button>
+            </section>
+            <section class="candidates">
+                <h2><br>Candidates<br></h2>
+                <ul class="listOfCandidates" ng-repeat="candidate in candidates | filter: {projectsID: projectID}">
+                    <li>
+                        <a href="#">{{candidate.name}} {{candidate.surname}}</a>
+                        <button class="removeButton" ng-click="deleteCandidate(candidate._id)">
+                            <img src="img/trash.png">
+                        </button>
+                    </li>
+                </ul>
+                <aside class="addElement">
+                    <h3>Add new candidate</h3>
+                    <form method="post">
+                        <span>Name: </span><input name="name" type="text" class="nameOfCandidate" ng-model=formData.name>
+                        <span>Surname: </span><input name="surname" type="text" class="surnameOfCandidate" ng-model=formData.surname>
+                        <button type="submit"
+                                class="addCandidate"
+                                ng-click="createCandidate()">Add
+                        </button>
+                    </form>
+                </aside>
+            </section>
+        </div>
+        <div class="clearDiv"></div>
+    </main>
+    <footer>
+        2016
+    </footer>
+</div>

@@ -1,1 +1,1 @@
-var recruitApp = angular.module('recruitApp', ['ngRoute']);
+var recruitApp = angular.module('recruitApp', ['ngRoute', 'angularCSS']);

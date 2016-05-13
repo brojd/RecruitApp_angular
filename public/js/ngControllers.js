@@ -38,7 +38,6 @@ recruitApp.controller('clientsCtrl', function($scope, $http) {
             });
         }
     };
-    
 });
 
 
@@ -50,12 +49,14 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
     $scope.clientID = $routeParams.clientID;
     $scope.formData = {};
     
-    $http.get('/client')
+    $http({
+        method: 'GET',
+        url: '/client',
+        params: {'clientID': $scope.clientID}
+        })
         .success(function(data) {
-            var currentProjects = data['projects'].filter(function(project) {return project.clientID==$scope.clientID;});
-            var currentClient = data['clients'].filter(function(client) {return client._id==$scope.clientID;});
-            $scope.clientName = currentClient[0].name;
-            $scope.projects = currentProjects;
+            $scope.projects = data.projects;
+            $scope.clientName = data.client[0].name;
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -65,8 +66,7 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
         $http.post('/client', {'formData': $scope.formData,
                                'clientID': $scope.clientID})
             .success(function(data) {
-                var currentProjects = data.filter(function(project) {return project.clientID==$scope.clientID;});
-                $scope.projects = currentProjects;
+                $scope.projects = data;
                 $scope.formData = {};
             })
             .error(function(data) {
@@ -86,5 +86,66 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
             });
         }
     };
+});
+
+
+/* CANDIDATES */
+
+
+recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
     
+    $scope.clientID = $routeParams.clientID;
+    $scope.projectID = $routeParams.projectID;
+    $scope.formData = {};
+    
+    $http({
+        method: 'GET',
+        url: '/project',
+        params: {'clientID': $scope.clientID,
+                 'projectID': $scope.projectID}
+        })
+        .success(function(data) {
+            $scope.clientName = data.client[0].name;
+            $scope.projectName = data.project[0].name;
+            $scope.jobDescText = data.project[0].job_description;
+            $scope.candidates = data.candidates;
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    
+    $scope.createCandidate = function() {
+        $http.post('/project', {'formData': $scope.formData,
+                                'projectID': $scope.projectID})
+        .success(function(data) {
+            $scope.candidates = data;
+            $scope.formData = {};
+        })
+        .error(function(data) {
+            console.log('Error ' + data);
+        });
+    };
+    
+    $scope.deleteCandidate = function(idOfCandidate) {
+        var toDelete = confirm('Do you want to delete candidate?');
+        if (toDelete) {
+            $http.delete('/candidate/' + idOfCandidate)
+            .success(function(data) {
+                $scope.candidates = data;
+            });
+        }
+    };
+    
+    $scope.saveJobDesc = function() {
+        $http({
+            method: 'PUT',
+            url: '/candidate',
+            params: {'projectID': $scope.projectID,
+                     'jobDescText': $scope.jobDescText}
+            })
+        .success(function(data) {
+            console.log(data);
+        });
+    };
+
 });

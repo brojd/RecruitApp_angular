@@ -53,25 +53,24 @@ app['delete']('/clients/:client_id', function(req, res) {
     });
 });
 
-
 // Projects
 
 app.get('/client', function(req, res) {
     manageDB.getProjects(function(err, projects) {
+        var data = {};
         if (err) {
             throw Error(err);
         } else {
-            manageDB.getClients(function(err, clients) {
+            data.projects = projects;
+            manageDB.getClientById(req.query.clientID, function(err, client) {
                 if (err) {
                     throw Error(err);
                 } else {
-                    var data = {'clients': clients,
-                                'projects': projects};
-                    console.log(data);
+                    console.log(req.query.clientID);
+                    data.client = client;
                     res.json(data);
                 }
-            })
-            
+            });
         }
     });
 });
@@ -94,6 +93,64 @@ app['delete']('/client/:project_id', function(req, res) {
             throw Error(err);
         } else {
             res.json(projects);
+        }
+    });
+});
+
+// Details of project 
+
+app.get('/project', function(req, res) {
+    var data = {};
+    manageDB.getCandidates(function(err, candidates) {
+        if (err) {
+            throw Error(err)
+        } else {
+            data.candidates = candidates;
+            manageDB.getClientById(req.query.clientID, function(err, client) {
+                if (err) {
+                    throw Error(err);
+                } else {
+                    data.client = client;
+                    manageDB.getProjectById(req.query.projectID, function(err, project) {
+                        if (err) {
+                            throw Error(err);
+                        } else {
+                            data.project = project;
+                            res.json(data);
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+app.post('/project', function(req, res) {
+    manageDB.saveCandidate(req.body.formData, req.body.projectID, function(err, candidates) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(candidates);
+        }
+    });
+});
+
+app['delete']('/candidate/:candidateID', function(req, res) {
+    manageDB.removeCandidate(req.params.candidateID, function(err, candidates) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(candidates);
+        }
+    });
+});
+
+app['put']('/candidate', function(req, res) {
+    manageDB.updateJobDesc(req.query.projectID, req.query.jobDescText, function(err, project) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.send(project);
         }
     });
 });

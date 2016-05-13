@@ -1,6 +1,7 @@
 <div id="container">
     <header>
         <div class="topLine"></div>
+        <a href="#"><img src="../img/back_icon.png" class="back_icon"></a>
         <a href="/#/" id="logoAnchor"><img src="../img/logo.png" id="logo"></a>
         <a href="/searchCandidates" id="searchAnchor">
             <button id="searchButton">Search Candidates</button>
@@ -12,9 +13,9 @@
                 Client: {{clientName}}<br>
                 Projects
             </h2>
-            <ul class="listOfProjects" ng-repeat="project in projects">
+            <ul class="listOfProjects" ng-repeat="project in projects | filter : {'clientID': clientID}">
                 <li>
-                    <a href="#">{{project.name}}</a>
+                    <a href="#/client/{{clientID}}/project/{{project._id}}">{{project.name}}</a>
                     <button class="removeButton" ng-click="deleteProject(project._id)">
                         <img src="img/trash.png">
                     </button>
