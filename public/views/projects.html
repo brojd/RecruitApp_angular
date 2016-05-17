@@ -15,7 +15,7 @@
             </h2>
             <ul class="listOfProjects" ng-repeat="project in projects | filter : {'clientID': clientID}">
                 <li>
-                    <a href="#/client/{{clientID}}/project/{{project._id}}">{{project.name}}</a>
+                    <a href="#/client/{{clientID}}/detailsOfProject/{{project._id}}">{{project.name}}</a>
                     <button class="removeButton" ng-click="deleteProject(project._id)">
                         <img src="img/trash.png">
                     </button>

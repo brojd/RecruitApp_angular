@@ -1,4 +1,5 @@
 var mongojs = require("mongojs");
+var fs = require('fs');
 var uri = "mongodb://dominik791:mongo08@ds013290.mlab.com:13290/contour_project";
 var db = mongojs(uri, ['clients', 'projects', 'candidates', 'others']);
 var bodyParser = require('body-parser');
@@ -8,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-/* CLIENT */
+/* CLIENTS */
 
 
 // return all clients
@@ -154,24 +155,8 @@ module.exports.removeProject = function(idOfProject, callback) {
     });
 };
 
-module.exports.updateJobDesc = function(idOfProject, textProvided, callback) {
-    db.projects.update({ _id: Number(idOfProject) }, { $set: { job_description: textProvided }}, function(err) {
-        if (err) {
-            callback(err);
-        } else {
-            db.projects.find({ _id: Number(idOfProject) }, function(err, project) {
-                if (err) {
-                    callback(err);
-                } else {
-                    callback(null, project);
-                }
-            });
-        }
-    });
-};
 
-
-/* CANDIDATES */
+/* DETAILS OF PROJECT */
 
 
 module.exports.getCandidates = function(callback) {
@@ -189,27 +174,30 @@ module.exports.saveCandidate = function(userData, idOfProject, callback) {
         if (err) {
             callback(err);
         } else {
-            db.candidates.insert({
-                '_id': docs[0].candidateID,
-                'name': userData.name,
-                'surname': userData.surname,
-                'projectsID': [idOfProject],
-                'nbOfExperience': '1',
-                'nbOfEducation': '1',
-                'nbOfCourses': '1',
-                'details': {}
-            }, function(err) {
+            fs.readFile('candidateDetailsSkeleton.json', 'utf-8', function(err, details) {
                 if (err) {
-                    callback(err);
+                    return console.log(err);
                 } else {
-                    db.others.update({}, { $inc: { candidateID: 1 }});
-                    db.candidates.find({}, function(err, candidates) {
-                                    if (err) {
-                                        return callback(err);
-                                    } else {
-                                        return callback(null, candidates);
-                                    }
-                                });
+                    db.candidates.insert({
+                        '_id': docs[0].candidateID,
+                        'name': userData.name,
+                        'surname': userData.surname,
+                        'projectsID': [idOfProject],
+                        'details': JSON.parse(details)
+                    }, function(err) {
+                        if (err) {
+                            callback(err);
+                        } else {
+                            db.others.update({}, { $inc: { candidateID: 1 }});
+                            db.candidates.find({}, function(err, candidates) {
+                                            if (err) {
+                                                return callback(err);
+                                            } else {
+                                                return callback(null, candidates);
+                                            }
+                                        });
+                        }
+                    });
                 }
             });
         }
@@ -226,6 +214,52 @@ module.exports.removeCandidate = function(idOfCandidate, callback) {
                     callback(err);
                 } else {
                     callback(null, candidates);
+                }
+            });
+        }
+    });
+};
+
+module.exports.updateJobDesc = function(idOfProject, textProvided, callback) {
+    db.projects.update({ _id: Number(idOfProject) }, { $set: { job_description: textProvided }}, function(err) {
+        if (err) {
+            callback(err);
+        } else {
+            db.projects.find({ _id: Number(idOfProject) }, function(err, project) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, project);
+                }
+            });
+        }
+    });
+};
+
+
+/* DETAILS OF CANDIDATE */
+
+
+module.exports.getDetailsOfCandidate = function(idOfCandidate, callback) {
+    db.candidates.find({ _id: Number(idOfCandidate) }, function(err, candidate) {
+        if (err) {
+            return callback(err);
+        } else {
+            return callback(null, candidate);
+        }
+    });
+};
+
+module.exports.saveCandidateDetails = function(idOfCandidate, detailsProvided, callback) {
+    db.candidates.update({ _id: Number(idOfCandidate) }, { $set: { details: detailsProvided }}, function(err) {
+        if (err) {
+            return callback(err);
+        } else {
+            db.candidates.find({ _id: Number(idOfCandidate) }, function(err, candidate) {
+                if (err) {
+                    return callback(err);
+                } else {
+                    return callback(null, candidate);
                 }
             });
         }

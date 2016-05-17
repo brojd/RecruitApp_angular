@@ -22,7 +22,9 @@
                 <h2><br>Candidates<br></h2>
                 <ul class="listOfCandidates" ng-repeat="candidate in candidates | filter: {projectsID: projectID}">
                     <li>
-                        <a href="#">{{candidate.name}} {{candidate.surname}}</a>
+                        <a href="#/detailsOfCandidate/{{candidate._id}}">
+                            {{candidate.name}} {{candidate.surname}}
+                        </a>
                         <button class="removeButton" ng-click="deleteCandidate(candidate._id)">
                             <img src="img/trash.png">
                         </button>

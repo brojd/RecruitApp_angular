@@ -89,10 +89,10 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
 });
 
 
-/* CANDIDATES */
+/* DETAILS OF PROJECT */
 
 
-recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
+recruitApp.controller('detailsOfProjectCtrl', function($scope, $http, $routeParams) {
     
     $scope.clientID = $routeParams.clientID;
     $scope.projectID = $routeParams.projectID;
@@ -100,7 +100,7 @@ recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
     
     $http({
         method: 'GET',
-        url: '/project',
+        url: '/detailsOfProject',
         params: {'clientID': $scope.clientID,
                  'projectID': $scope.projectID}
         })
@@ -115,8 +115,8 @@ recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
         });
     
     $scope.createCandidate = function() {
-        $http.post('/project', {'formData': $scope.formData,
-                                'projectID': $scope.projectID})
+        $http.post('/detailsOfProject', {'formData': $scope.formData,
+                                         'projectID': $scope.projectID})
         .success(function(data) {
             $scope.candidates = data;
             $scope.formData = {};
@@ -129,7 +129,7 @@ recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
     $scope.deleteCandidate = function(idOfCandidate) {
         var toDelete = confirm('Do you want to delete candidate?');
         if (toDelete) {
-            $http.delete('/candidate/' + idOfCandidate)
+            $http.delete('/detailsOfProject/' + idOfCandidate)
             .success(function(data) {
                 $scope.candidates = data;
             });
@@ -139,13 +139,54 @@ recruitApp.controller('candidatesCtrl', function($scope, $http, $routeParams) {
     $scope.saveJobDesc = function() {
         $http({
             method: 'PUT',
-            url: '/candidate',
+            url: '/detailsOfProject',
             params: {'projectID': $scope.projectID,
                      'jobDescText': $scope.jobDescText}
             })
         .success(function(data) {
             console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error ' + data)
         });
     };
+});
 
+
+/* DETAILS OF CANDIDATE */
+
+
+recruitApp.controller('detailsOfCandidateCtrl', function($scope, $http, $routeParams) {
+    
+    $scope.candidateID = $routeParams.candidateID;
+    $scope.details = {};
+    
+    $http({
+        method: 'GET',
+        url: '/detailsOfCandidate',
+        params: {'candidateID': $scope.candidateID}
+        })
+    .success(function(data) {
+        $scope.details = data[0].details;
+        $scope.nameOfCandidate = data[0].name;
+        $scope.surnameOfCandidate = data[0].surname;
+    });
+    
+    $scope.saveDetails = function() {
+        $http.post('/detailsOfCandidate', {'details': $scope.details,
+                                           'candidateID': $scope.candidateID})
+        .success(function(data) {
+            $scope.details = data[0].details;
+        })
+        .error(function(data) {
+            console.log('Error ' + data);
+        });
+    };
+    
+    $scope.addForm = function(section) {
+        var detailsSection = $scope.details[section.nameOfSection.toLowerCase()];
+        detailsSection.nbOfForms.push(section.nbOfForms.length + 1);
+        detailsSection['fields' + Number(section.nbOfForms.length)] = detailsSection.fields;
+        console.log($scope.details);
+    };
 });

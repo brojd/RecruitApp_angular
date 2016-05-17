@@ -99,7 +99,7 @@ app['delete']('/client/:project_id', function(req, res) {
 
 // Details of project 
 
-app.get('/project', function(req, res) {
+app.get('/detailsOfProject', function(req, res) {
     var data = {};
     manageDB.getCandidates(function(err, candidates) {
         if (err) {
@@ -125,7 +125,7 @@ app.get('/project', function(req, res) {
     });
 });
 
-app.post('/project', function(req, res) {
+app.post('/detailsOfProject', function(req, res) {
     manageDB.saveCandidate(req.body.formData, req.body.projectID, function(err, candidates) {
         if (err) {
             throw Error(err);
@@ -135,7 +135,7 @@ app.post('/project', function(req, res) {
     });
 });
 
-app['delete']('/candidate/:candidateID', function(req, res) {
+app['delete']('/detailsOfProject/:candidateID', function(req, res) {
     manageDB.removeCandidate(req.params.candidateID, function(err, candidates) {
         if (err) {
             throw Error(err);
@@ -145,12 +145,35 @@ app['delete']('/candidate/:candidateID', function(req, res) {
     });
 });
 
-app['put']('/candidate', function(req, res) {
+app['put']('/detailsOfProject', function(req, res) {
     manageDB.updateJobDesc(req.query.projectID, req.query.jobDescText, function(err, project) {
         if (err) {
             throw Error(err);
         } else {
             res.send(project);
+        }
+    });
+});
+
+// Details of candidate 
+
+app.get('/detailsOfCandidate', function(req, res) {
+    manageDB.getDetailsOfCandidate(req.query.candidateID, function(err, candidate) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(candidate);
+        }
+    });
+});
+
+app.post('/detailsOfCandidate', function(req, res) {
+    console.log(req.body.details);
+    manageDB.saveCandidateDetails(req.body.candidateID, req.body.details, function(err, candidate) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(candidate);
         }
     });
 });

@@ -14,10 +14,16 @@ recruitApp.config(function($routeProvider) {
             css: ['../css/main.css', '../css/clients&projects.css', '../css/clients&projectsMediaQueries.css']
         }).
         
-        when('/client/:clientID/project/:projectID', {
+        when('/client/:clientID/detailsOfProject/:projectID', {
             templateUrl: '../views/detailsOfProject.html',
-            controller: 'candidatesCtrl',
+            controller: 'detailsOfProjectCtrl',
             css: ['../css/main.css', '../css/detailsOfProject.css', '../css/detailsOfProjectMediaQueries']
+        }).
+        
+        when('/detailsOfCandidate/:candidateID', {
+            templateUrl: '../views/detailsOfCandidate.html',
+            controller: 'detailsOfCandidateCtrl',
+            css: ['../css/main.css', '../css/detailsOfCandidate.css', '../css/detailsOfCandidateMediaQueries']
         });
         
 });

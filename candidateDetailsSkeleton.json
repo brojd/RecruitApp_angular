@@ -1,0 +1,186 @@
+{
+    "basicInfo": {
+        "nameOfSection": "Basic information",
+        "fields": {
+            "recommendedOn": {
+                "name": "Recommended on",
+                "text": "",
+                "id": "recommendedOn",
+                "type": "text"
+            },
+            "currentPosition": {
+                "name": "Current position",
+                "text": "",
+                "id": "currentPosition",
+                "type": "text"
+            },
+            "salaryExpectations": {
+                "name": "Salary expectations",
+                "text": "",
+                "id": "salaryExpectations",
+                "type": "text"
+            },
+            "availability": {
+                "name": "Availability/Notice period",
+                "text": "",
+                "id": "availability",
+                "type": "text"
+            },
+            "languages": {
+                "name": "Languages",
+                "text": "",
+                "id": "languages",
+                "type": "text"
+            }
+        },
+        "toRollOut": false,
+        "nbOfForms": [1]
+    },
+    "experience": {
+        "nameOfSection": "Experience",
+        "fields": {
+            "startWork": {
+                "name": "Start date",
+                "text": "",
+                "id": "startWork",
+                "type": "text"
+            },
+            "endWork": {
+                "name": "End date",
+                "text": "",
+                "id": "endWork",
+                "type": "text"
+            },
+            "employer": {
+                "name": "Name of employer",
+                "text": "",
+                "id": "employer",
+                "type": "text"
+            },
+            "position": {
+                "name": "Name of position",
+                "text": "",
+                "id": "position",
+                "type": "text"
+            },
+            "responsibilities": {
+                "name": "Responsibilities",
+                "text": "",
+                "id": "responsibilities",
+                "type": "textarea"
+            },
+            "technologies": {
+                "name": "Technology stack",
+                "text": "",
+                "id": "technologies",
+                "type": "textarea"
+            },
+            "reasonOfChange": {
+                "name": "Reason of change",
+                "text": "",
+                "id": "reasonOfChange",
+                "type": "textarea"
+            }
+        },
+        "toRollOut": true,
+        "nbOfForms": [1]
+    },
+    "education": {
+        "nameOfSection": "Education",
+        "fields": {
+            "startSchool": {
+                "name": "Start date",
+                "text": "",
+                "id": "startSchool",
+                "type": "text"
+            },
+            "endSchool": {
+                "name": "End date",
+                "text": "",
+                "id": "endSchool",
+                "type": "text"
+            },
+            "nameOfSchool": {
+                "name": "Name of school/university",
+                "text": "",
+                "id": "nameOfSchool",
+                "type": "text"
+            },
+            "faculty": {
+                "name": "Faculty",
+                "text": "",
+                "id": "faculty",
+                "type": "text"
+            },
+            "specialization": {
+                "name": "Specialization",
+                "text": "",
+                "id": "specialization",
+                "type": "text"
+            },
+            "degree": {
+                "name": "Degree",
+                "text": "",
+                "id": "degree",
+                "type": "text"
+            }
+        },
+        "toRollOut": true,
+        "nbOfForms": [1]
+    },
+    "courses": {
+        "nameOfSection": "Courses",
+        "fields": {
+            "courseDate": {
+                "name": "Date",
+                "text": "",
+                "id": "courseDate",
+                "type": "text"
+            },
+            "nameOfCourse": {
+                "name": "Name",
+                "text": "",
+                "id": "nameOfCourse",
+                "type": "text"
+            }
+        },
+        "toRollOut": true,
+        "nbOfForms": [1]
+    },
+    "techSkills": {
+        "nameOfSection": "Technical Skills",
+        "fields": {
+            "techSkills": {
+                "name": "Technical skills",
+                "text": "",
+                "id": "techSkills",
+                "type": "textarea"
+            }
+        },
+        "nbOfForms": [1]
+    },
+    "otherInfo": {
+        "nameOfSection": "Other information",
+        "fields": {
+            "otherInfo": {
+                "name": "Other Information",
+                "text": "",
+                "id": "otherInfo",
+                "type": "textarea"
+            }
+        },
+        "nbOfForms": [1]
+    },
+    "additionalComment": {
+        "nameOfSection": "Additional Comment",
+        "fields": {
+            "additionalComment": {
+                "name": "Additional comment",
+                "text": "",
+                "id": "additionalComment",
+                "type": "textarea"
+            }
+        },
+        "nbOfForms": [1]
+    }
+}
