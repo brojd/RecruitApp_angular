@@ -48,6 +48,9 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
 
     $scope.clientID = $routeParams.clientID;
     $scope.formData = {};
+    $scope.goBack = function() {
+        window.history.back();
+    };
     
     $http({
         method: 'GET',
@@ -65,13 +68,13 @@ recruitApp.controller('projectsCtrl', function($scope, $http, $routeParams) {
     $scope.createProject = function() {
         $http.post('/client', {'formData': $scope.formData,
                                'clientID': $scope.clientID})
-            .success(function(data) {
-                $scope.projects = data;
-                $scope.formData = {};
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        .success(function(data) {
+            $scope.projects = data;
+            $scope.formData = {};
+         })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
     };
     
     $scope.deleteProject = function(id) {
@@ -97,22 +100,25 @@ recruitApp.controller('detailsOfProjectCtrl', function($scope, $http, $routePara
     $scope.clientID = $routeParams.clientID;
     $scope.projectID = $routeParams.projectID;
     $scope.formData = {};
+    $scope.goBack = function() {
+        window.history.back();
+    };
     
     $http({
         method: 'GET',
         url: '/detailsOfProject',
         params: {'clientID': $scope.clientID,
                  'projectID': $scope.projectID}
-        })
-        .success(function(data) {
-            $scope.clientName = data.client[0].name;
-            $scope.projectName = data.project[0].name;
-            $scope.jobDescText = data.project[0].job_description;
-            $scope.candidates = data.candidates;
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    })
+    .success(function(data) {
+        $scope.clientName = data.client[0].name;
+        $scope.projectName = data.project[0].name;
+        $scope.jobDescText = data.project[0].job_description;
+        $scope.candidates = data.candidates;
+    })
+    .error(function(data) {
+        console.log('Error: ' + data);
+    });
     
     $scope.createCandidate = function() {
         $http.post('/detailsOfProject', {'formData': $scope.formData,
@@ -142,7 +148,7 @@ recruitApp.controller('detailsOfProjectCtrl', function($scope, $http, $routePara
             url: '/detailsOfProject',
             params: {'projectID': $scope.projectID,
                      'jobDescText': $scope.jobDescText}
-            })
+        })
         .success(function(data) {
             console.log(data);
         })
@@ -160,12 +166,15 @@ recruitApp.controller('detailsOfCandidateCtrl', function($scope, $http, $routePa
     
     $scope.candidateID = $routeParams.candidateID;
     $scope.details = {};
+    $scope.goBack = function() {
+        window.history.back();
+    };
     
     $http({
         method: 'GET',
         url: '/detailsOfCandidate',
         params: {'candidateID': $scope.candidateID}
-        })
+    })
     .success(function(data) {
         $scope.details = data[0].details;
         $scope.nameOfCandidate = data[0].name;
@@ -189,4 +198,28 @@ recruitApp.controller('detailsOfCandidateCtrl', function($scope, $http, $routePa
         detailsSection['fields' + Number(section.nbOfForms.length)] = detailsSection.fields;
         console.log($scope.details);
     };
+});
+
+
+/* SEARCH CANDIDATES */
+
+
+recruitApp.controller('searchCandidatesCtrl', function($scope, $http, $routeParams) {
+    
+    $scope.goBack = function() {
+        window.history.back();
+    };
+    
+    $http({
+        method: 'GET',
+        url: '/searchCandidates',
+    })
+    .success(function(allCandidates) {
+        $scope.allCandidates = allCandidates;
+        console.log($scope.allCandidates);
+    })
+    .error(function(allCandidates) {
+        console.log('Error ' + allCandidates);
+    });
+    
 });

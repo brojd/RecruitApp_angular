@@ -1,0 +1,36 @@
+<div id="container">
+    <header>
+        <div class="topLine"></div>
+        <img src="../img/back_icon.png" class="back_icon" ng-click="goBack()">
+        <a href="/#/" id="logoAnchor"><img src="img/logo.png" id="logo"></a>
+    </header>
+    <main>
+        <div id="sectionsWrapper">
+            <section id="searchForm">
+                <form method="get" action="/searchCandidates">
+                    <span>Name: </span><input name="name" id="name" type="text" ng-model="inputName">
+                    <span>Surname: </span><input name="surname" id="surname" type="text" ng-model="inputSurname">
+                    <span>Recommended on: </span><input name="recommendedOn" id="recommendedOn" type="text" ng-model="inputRecommendedOn">
+                    <span>Current position: </span><input name="currentPosition" id="currentPosition" type="text" ng-model="inputCurrentPosition">
+                    <span>Languages: </span><input name="languages" id="languages" type="text" ng-model="inputLanguages">
+                    <span>Technical skills: </span><textarea name="techSkills" id="techSkills" ng-model="inputTechSkills"></textarea><br>
+                </form>
+            </section>
+            <section id="results">
+                <ul class="listOfCandidates" ng-repeat="candidate in allCandidates |
+                filter: {name: inputName} |
+                filter: {surname: inputSurname} |
+                filter: {details: {basicInfo: {fields: {recommendedOn: {text: inputRecommendedOn}}}}} |
+                filter: {details: {basicInfo: {fields: {currentPosition: {text: inputCurrentPosition}}}}} |
+                filter: {details: {basicInfo: {fields: {languages: {text: inputLanguages}}}}} |
+                filter: {details: {techSkills: {fields: {techSkills: {text: inputTechSkills}}}}}">
+                    <li><a href="#/detailsOfCandidate/{{candidate._id}}">{{candidate.name}} {{candidate.surname}} </a></li>
+                </ul>
+            </section>
+        </div>
+        <div id="clearDiv"></div>
+    </main>
+    <footer>
+        2016
+    </footer>
+</div>

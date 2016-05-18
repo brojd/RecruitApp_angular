@@ -43,6 +43,9 @@ main .listOfCandidates {
     float: right;
 }
 
+main ul li a {
+    width: 280px;
+}
 
 main #clearDiv {
     clear: both;

@@ -168,12 +168,23 @@ app.get('/detailsOfCandidate', function(req, res) {
 });
 
 app.post('/detailsOfCandidate', function(req, res) {
-    console.log(req.body.details);
     manageDB.saveCandidateDetails(req.body.candidateID, req.body.details, function(err, candidate) {
         if (err) {
             throw Error(err);
         } else {
             res.json(candidate);
+        }
+    });
+});
+
+// Search candidates
+
+app.get('/searchCandidates', function(req, res) {
+    manageDB.getCandidates(function(err, candidates) {
+        if (err) {
+            throw Error(err);
+        } else {
+            res.json(candidates);
         }
     });
 });
