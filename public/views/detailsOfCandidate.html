@@ -1,7 +1,7 @@
 <div id="container">
     <header>
         <div class="topLine"></div>
-        <img src="../img/back_icon.png" class="back_icon" ng-click="goBack()">
+        <img src="../img/back_icon.png" class="back_icon" ng-click="detailsOfCandidate.goBack()">
         <a href="/#/" id="logoAnchor"><img src="img/logo.png" id="logo"></a>
         <a href="#/searchCandidates" id="searchAnchor">
             <button id="searchButton">Search Candidates</button>
@@ -9,14 +9,16 @@
     </header>
     <main>
         <h2>
-            Candidate: <span class='nameOfCandidate'>{{nameOfCandidate}} {{surnameOfCandidate}}</span><br>
+            Candidate: <span class='nameOfCandidate'>
+                          {{detailsOfCandidate.nameOfCandidate}} {{detailsOfCandidate.surnameOfCandidate}}
+                       </span><br>
             <span class='nameOfProject'></span><br>
             <span class='nameOfClient'></span>
         </h2>
-        <section ng-repeat="detailSection in details">
+        <section ng-repeat="detailSection in detailsOfCandidate.details">
                 <h3>{{detailSection.nameOfSection}}</h3>
-                <div ng-repeat="form in detailSection.nbOfForms track by $index">
-                <form>
+                <div ng-repeat="formNb in detailSection.nbOfForms track by $index">
+                <form>{{'detailSection.field' + formNb}}
                     <div ng-repeat="detailField in detailSection.fields">
                         <span>{{detailField.name}}</span>
                         <input id="{{detailField.id}}" type="{{detailField.type}}"
@@ -26,13 +28,13 @@
                         </textarea>
                     </div><br>
                     <div class="plus" ng-if="$last && detailSection.toRollOut">
-                        <img src="../img/plus.png" id="plusImg" ng-click="addForm(detailSection)">
+                        <img src="../img/plus.png" id="plusImg" ng-click="detailsOfCandidate.addForm(detailSection)">
                     </div>
                 </form>
                 </div>
         </section>
         <button type="button" id="saveCandidateInfo"
-                ng-click="saveDetails()">Save
+                ng-click="detailsOfCandidate.saveDetails()">Save
         </button>
     </main>
     <footer>

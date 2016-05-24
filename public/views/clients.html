@@ -9,10 +9,10 @@
     <main>
         <section class="clients">
             <h2>Clients</h2>
-            <ul class="listOfClients" ng-repeat="client in clients">
+            <ul class="listOfClients" ng-repeat="client in clients.clients">
                 <li>
                     <a href="#/client/{{client._id}}">{{client.name}}</a>
-                    <button class="removeButton" ng-click="deleteClient(client._id)">
+                    <button class="removeButton" ng-click="clients.deleteClient(client._id)">
                         <img src="img/trash.png">
                     </button>
                 </li>
@@ -20,8 +20,8 @@
             <aside class="addElement">
                 <h3>Add new client</h3>
                 <form method="post">
-                    Name: <input type="text" class="nameOfClient" ng-model="formData.clientName">
-                    <button type="submit" class="addClient" ng-click="createClient()">
+                    Name: <input type="text" class="nameOfClient" ng-model="clients.formData.clientName">
+                    <button type="submit" class="addClient" ng-click="clients.createClient()">
                         Add
                     </button>
                 </form>

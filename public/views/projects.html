@@ -1,7 +1,7 @@
 <div id="container">
     <header>
         <div class="topLine"></div>
-        <img src="../img/back_icon.png" class="back_icon" ng-click="goBack()">
+        <img src="../img/back_icon.png" class="back_icon" ng-click="projects.goBack()">
         <a href="/#/" id="logoAnchor"><img src="../img/logo.png" id="logo"></a>
         <a href="#/searchCandidates" id="searchAnchor">
             <button id="searchButton">Search Candidates</button>
@@ -10,13 +10,13 @@
     <main>
         <section class="projects">
             <h2>
-                Client: {{clientName}}<br>
+                Client: {{projects.clientName}}<br>
                 Projects
             </h2>
-            <ul class="listOfProjects" ng-repeat="project in projects | filter : {'clientID': clientID}">
+            <ul class="listOfProjects" ng-repeat="project in projects.projects | filter : {'clientID': projects.clientID}">
                 <li>
-                    <a href="#/client/{{clientID}}/detailsOfProject/{{project._id}}">{{project.name}}</a>
-                    <button class="removeButton" ng-click="deleteProject(project._id)">
+                    <a href="#/client/{{projects.clientID}}/detailsOfProject/{{project._id}}">{{project.name}}</a>
+                    <button class="removeButton" ng-click="projects.deleteProject(project._id)">
                         <img src="img/trash.png">
                     </button>
                 </li>
@@ -24,8 +24,8 @@
             <aside class="addElement">
                 <h3>Add new project</h3>
                 <form method="post">
-                    Name: <input type="text" class="nameOfProject" ng-model="formData.projectName">
-                    <button type="submit" class="addProject" ng-click="createProject()">
+                    Name: <input type="text" class="nameOfProject" ng-model="projects.formData.projectName">
+                    <button type="submit" class="addProject" ng-click="projects.createProject()">
                         Add
                     </button>
                 </form>

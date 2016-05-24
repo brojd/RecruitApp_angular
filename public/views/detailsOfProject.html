@@ -1,7 +1,7 @@
 <div id="container">
     <header>
         <div class="topLine"></div>
-        <img src="../img/back_icon.png" class="back_icon" ng-click="goBack()">
+        <img src="../img/back_icon.png" class="back_icon" ng-click="detailsOfProject.goBack()">
         <a href="/#/" id="logoAnchor"><img src="img/logo.png" id="logo"></a>
         <a href="#/searchCandidates" id="searchAnchor">
             <button id="searchButton">Search Candidates</button>
@@ -11,21 +11,21 @@
         <div class="wrapSections">
             <section class="jobDescription">
                 <h2>Job Description<br>
-                <span class="nameOfClient">Client: {{clientName}}</span><br>
-                <span class="nameOfProject">Project: {{projectName}}</span></h2>
-                <textarea class="jobDescText" ng-model="jobDescText">{{jobDescText}}</textarea>
-                <button type="button" id="saveJobDescription" ng-click="saveJobDesc()">
+                <span class="nameOfClient">Client: {{detailsOfProject.clientName}}</span><br>
+                <span class="nameOfProject">Project: {{detailsOfProject.projectName}}</span></h2>
+                <textarea class="jobDescText" ng-model="detailsOfProject.jobDescText">{{detailsOfProject.jobDescText}}</textarea>
+                <button type="button" id="saveJobDescription" ng-click="detailsOfProject.saveJobDesc()">
                     Save
                 </button>
             </section>
             <section class="candidates">
                 <h2><br>Candidates<br></h2>
-                <ul class="listOfCandidates" ng-repeat="candidate in candidates | filter: {projectsID: projectID}">
+                <ul class="listOfCandidates" ng-repeat="candidate in detailsOfProject.candidates | filter: {projectsID: detailsOfProject.projectID}">
                     <li>
                         <a href="#/detailsOfCandidate/{{candidate._id}}">
                             {{candidate.name}} {{candidate.surname}}
                         </a>
-                        <button class="removeButton" ng-click="deleteCandidate(candidate._id)">
+                        <button class="removeButton" ng-click="detailsOfProject.deleteCandidate(candidate._id)">
                             <img src="img/trash.png">
                         </button>
                     </li>
@@ -33,11 +33,13 @@
                 <aside class="addElement">
                     <h3>Add new candidate</h3>
                     <form method="post">
-                        <span>Name: </span><input name="name" type="text" class="nameOfCandidate" ng-model=formData.name>
-                        <span>Surname: </span><input name="surname" type="text" class="surnameOfCandidate" ng-model=formData.surname>
+                        <span>Name: </span>
+                        <input name="name" type="text" class="nameOfCandidate" ng-model=detailsOfProject.formData.name>
+                        <span>Surname: </span>
+                        <input name="surname" type="text" class="surnameOfCandidate" ng-model=detailsOfProject.formData.surname>
                         <button type="submit"
                                 class="addCandidate"
-                                ng-click="createCandidate()">Add
+                                ng-click="detailsOfProject.createCandidate()">Add
                         </button>
                     </form>
                 </aside>
