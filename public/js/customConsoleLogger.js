@@ -8,12 +8,7 @@ var updateConsole = function(oldConsole){
             oldConsole.info('LOG, RecruitApp, ' + myDate);
             oldConsole.log(text);
         },
-        info: function (text) {
-            currentDate = Date.now();
-            myDate.setTime(currentDate);
-            oldConsole.info('INFO, RecruitApp, ' + myDate);
-            oldConsole.info(text);
-        },
+        info: function(){},
         warn: function (text) {
             currentDate = Date.now();
             myDate.setTime(currentDate);
