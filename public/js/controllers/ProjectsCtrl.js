@@ -1,9 +1,11 @@
-recruitApp.controller('projectsCtrl', function($http, $routeParams) {
+recruitApp.controller('projectsCtrl', function($http, $routeParams, $window) {
+    
+    $window.console = updateConsole($window.console);
 
     this.clientID = $routeParams.clientID;
     this.formData = {};
     this.goBack = function() {
-        window.history.back();
+        $window.history.back();
     };
     
     $http({

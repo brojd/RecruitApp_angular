@@ -1,9 +1,11 @@
-recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams) {
+recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams, $window) {
+    
+    $window.console = updateConsole($window.console);
     
     this.candidateID = $routeParams.candidateID;
     this.details = {};
     this.goBack = function() {
-        window.history.back();
+        $window.history.back();
     };
     
     $http({

@@ -1,7 +1,9 @@
-recruitApp.controller('searchCandidatesCtrl', function($http, $routeParams) {
+recruitApp.controller('searchCandidatesCtrl', function($http, $routeParams, $window) {
+    
+    $window.console = updateConsole($window.console);
     
     this.goBack = function() {
-        window.history.back();
+        $window.history.back();
     };
     
     $http({

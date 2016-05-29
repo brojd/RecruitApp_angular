@@ -1,10 +1,13 @@
-recruitApp.controller('clientsCtrl', function($http) {
+recruitApp.controller('clientsCtrl', function($http, $window) {
+    
+    $window.console = updateConsole($window.console);
     
     this.formData = {};
     
     $http.get('/clients')
         .success(angular.bind(this, function(data) {
             this.clients = data;
+            console.log('yyees');
         }))
         .error(angular.bind(this, function(data) {
             console.log('Error: ' + data);

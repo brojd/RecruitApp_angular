@@ -1,4 +1,4 @@
-var console = (function(oldConsole){
+var updateConsole = function(oldConsole){
     var myDate = new Date();
     var currentDate;
     return {
@@ -27,6 +27,4 @@ var console = (function(oldConsole){
             oldConsole.error(text);
         }
     };
-}(window.console));
-
-window.console = console;
+};
