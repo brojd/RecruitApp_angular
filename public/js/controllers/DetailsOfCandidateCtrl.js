@@ -24,6 +24,15 @@ recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams, $w
     
     this.addForm = function(section) {
         CandidatesService.addNewForm(section, this.details);
+        this.saveDetails();
+    };
+    
+    this.getSectionFields = function(detailSection, nbOfField) {
+        if (nbOfField >= 2) {
+            return detailSection['fields' + nbOfField];
+        } else {
+            return detailSection['fields'];
+        }
     };
     
 });

@@ -25,6 +25,7 @@ recruitApp.service('CandidatesService', function($http) {
     this.addNewForm = function(section, details) {
         var detailsSection = details[section.nameOfSection.toLowerCase()];
         detailsSection.nbOfForms.push(section.nbOfForms.length + 1);
+        console.log(detailsSection.fields);
         detailsSection['fields' + Number(section.nbOfForms.length)] = detailsSection.fields;
     };
     

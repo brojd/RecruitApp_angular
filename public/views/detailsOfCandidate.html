@@ -18,8 +18,8 @@
         <section ng-repeat="detailSection in detailsOfCandidate.details">
                 <h3>{{detailSection.nameOfSection}}</h3>
                 <div ng-repeat="formNb in detailSection.nbOfForms track by $index">
-                <form>{{'detailSection.field' + formNb}}
-                    <div ng-repeat="detailField in detailSection.fields">
+                <form>
+                    <div ng-repeat="detailField in detailsOfCandidate.getSectionFields(detailSection, formNb)">
                         <span>{{detailField.name}}</span>
                         <input id="{{detailField.id}}" type="{{detailField.type}}"
                                ng-model="detailField.text" ng-if="detailField.type == 'text'">
