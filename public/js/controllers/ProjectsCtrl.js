@@ -1,4 +1,4 @@
-recruitApp.controller('projectsCtrl', function($http, $routeParams, $window) {
+recruitApp.controller('projectsCtrl', function($http, $routeParams, $window, ProjectsService) {
     
     $window.console = updateConsole($window.console);
 
@@ -8,41 +8,25 @@ recruitApp.controller('projectsCtrl', function($http, $routeParams, $window) {
         $window.history.back();
     };
     
-    $http({
-        method: 'GET',
-        url: '/client',
-        params: {'clientID': this.clientID}
-        })
-        .success(angular.bind(this, function(data) {
-            this.projects = data.projects;
-            this.clientName = data.client[0].name;
-        }))
-        .error(angular.bind(this, function(data) {
-            console.log('Error: ' + data);
-        }));
+    ProjectsService.getProjects(this.clientID).then(angular.bind(this, function(serverResponse) {
+        this.projects = serverResponse.data.projects;
+        this.clientName = serverResponse.data.client[0].name;
+    }));
     
     this.createProject = function() {
-        $http.post('/client', {'formData': this.formData,
-                               'clientID': this.clientID})
-        .success(angular.bind(this, function(data) {
-            this.projects = data;
+        ProjectsService.addProject(this.clientID, this.formData).then(angular.bind(this, function(serverResponse) {
+            this.projects = serverResponse.data;
             this.formData = {};
-         }))
-        .error(angular.bind(this, function(data) {
-            console.log('Error: ' + data);
         }));
     };
     
     this.deleteProject = function(id) {
         var toDelete = confirm('Do you want to delete project?');
         if (toDelete) {
-            $http.delete('/client/' + id)
-            .success(angular.bind(this, function(data) {
-                this.projects = data;
-            }))
-            .error(angular.bind(this, function(data) {
-                console.log('Error: ' + data);
+            ProjectsService.removeProject(id).then(angular.bind(this, function(serverResponse) {
+                this.projects = serverResponse.data;
             }));
-        }
+        };
     };
+    
 });

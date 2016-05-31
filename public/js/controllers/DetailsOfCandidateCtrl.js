@@ -1,4 +1,4 @@
-recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams, $window) {
+recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams, $window, CandidatesService) {
     
     $window.console = updateConsole($window.console);
     
@@ -8,32 +8,22 @@ recruitApp.controller('detailsOfCandidateCtrl', function($http, $routeParams, $w
         $window.history.back();
     };
     
-    $http({
-        method: 'GET',
-        url: '/detailsOfCandidate',
-        params: {'candidateID': this.candidateID}
-    })
-    .success(angular.bind(this, function(data) {
-        this.details = data[0].details;
-        this.nameOfCandidate = data[0].name;
-        this.surnameOfCandidate = data[0].surname;
+    CandidatesService.getCandidateDetails(this.candidateID)
+                             .then(angular.bind(this, function(serverResponse) {
+        this.details = serverResponse.data[0].details;
+        this.nameOfCandidate = serverResponse.data[0].name;
+        this.surnameOfCandidate = serverResponse.data[0].surname;
     }));
     
     this.saveDetails = function() {
-        $http.post('/detailsOfCandidate', {'details': this.details,
-                                           'candidateID': this.candidateID})
-        .success(angular.bind(this, function(data) {
-            this.details = data[0].details;
-        }))
-        .error(angular.bind(this, function(data) {
-            console.log('Error ' + data);
+        CandidatesService.saveCandidateDetails(this.details, this.candidateID)
+                                 .then(angular.bind(this, function(serverResponse) {
+            this.details = serverResponse.data[0].details;
         }));
     };
     
     this.addForm = function(section) {
-        var detailsSection = this.details[section.nameOfSection.toLowerCase()];
-        detailsSection.nbOfForms.push(section.nbOfForms.length + 1);
-        detailsSection['fields' + Number(section.nbOfForms.length)] = detailsSection.fields;
-        console.log(this.details);
+        CandidatesService.addNewForm(section, this.details);
     };
+    
 });

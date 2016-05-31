@@ -1,4 +1,4 @@
-recruitApp.controller('searchCandidatesCtrl', function($http, $routeParams, $window) {
+recruitApp.controller('searchCandidatesCtrl', function($http, $routeParams, $window, CandidatesService) {
     
     $window.console = updateConsole($window.console);
     
@@ -6,16 +6,8 @@ recruitApp.controller('searchCandidatesCtrl', function($http, $routeParams, $win
         $window.history.back();
     };
     
-    $http({
-        method: 'GET',
-        url: '/searchCandidates',
-    })
-    .success(angular.bind(this, function(allCandidates) {
-        this.allCandidates = allCandidates;
-        console.log(this.allCandidates);
-    }))
-    .error(angular.bind(this, function(allCandidates) {
-        console.log('Error ' + allCandidates);
+    CandidatesService.getAllCandidates().then(angular.bind(this, function(serverResponse) {
+        this.allCandidates = serverResponse.data;
     }));
     
 });
