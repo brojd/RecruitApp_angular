@@ -1,5 +1,5 @@
 {
-  "name": "contour_project",
+  "name": "recruit-app2016",
   "version": "1.0.0",
   "description": "App to manage recruitment projects",
   "main": "server.js",
@@ -7,14 +7,31 @@
     "body-parser": "^1.15.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "angular": "^1.5.5",
+    "angular-css": "^1.0.8",
+    "angular-route": "^1.5.6",
     "mongojs": "^2.4.0",
+    "angular-route": "^1.4.8",
     "mongodb": "^2.1.18"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominik791/RecruitApp_angular.git"
+  },
+  "keywords": [
+    "recruitment",
+    "hr",
+    "candidates"
+  ],
   "author": "Dominik Broj",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominik791/RecruitApp_angular/issues"
+  },
+  "homepage": "https://github.com/dominik791/RecruitApp_angular#readme"
 }
