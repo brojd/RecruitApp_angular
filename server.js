@@ -11,7 +11,7 @@ var manageDB = require('./manageDB.js');
 app.use(express.static('public'));
 app.use('/scripts/angular', express.static(__dirname + '/node_modules/angular/'));
 app.use('/scripts/angular-route', express.static(__dirname + '/node_modules/angular-route/'));
-app.use('/scripts/jsPDF', express.static(__dirname + '/node_modules/jsPDF/dist/'));
+app.use('/scripts/jsPDF', express.static(__dirname + '/node_modules/jsPDF/dist'));
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
