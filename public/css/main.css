@@ -144,7 +144,7 @@ main ul li button, main ul li button img {
     display: inline-block;
 }
 
-.addElement button, #saveJobDescription, #saveCandidateInfo, #searchCandidates {
+.addElement button, #saveJobDescription, #saveCandidateInfo, #searchCandidates, #downloadCV {
     width: 80px;
     height: 30px;
     margin: 10px auto 10px auto;
